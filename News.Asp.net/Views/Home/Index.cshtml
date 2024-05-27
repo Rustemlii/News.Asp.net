@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DTO.EntityDTO.PostDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-body">
+    <div class="wrap">
+        <div class="col-md-8 content-left">
+         @*    <partial name="~/Views/Partials/_Slider.cshtml" /> *@
+         @await Component.InvokeAsync("SliderList")
+            <div class="articles">
+                <header>
+                    <h3 class="title-head">Dünyanın ətrafında</h3>
+                </header>
+
+                @foreach (var item in Model)
+                {
+
+
+                    <div class="article">
+                        <div class="article-left">
+                            <a asp-controller="Home" asp-action="Page" asp-route-id="@item.CategoryID"><img src="@item.Image1"></a>
+                        </div>
+                        <div class="article-right">
+                            <div class="article-title">
+                                <p>
+                                    @item.Time.ToString("dd-MMMM-yyyyy") <a class="span_link" href="#">
+                                        <span class="glyphicon glyphicon-comment"></span>0
+                                    </a><a class="span_link"
+                                           href="#"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" href="#">
+                                        <span class="glyphicon glyphicon-thumbs-up"></span>52
+                                    </a>
+                                </p>
+                                <a class="title" asp-controller="Home" asp-action="Page" asp-route-id="@item.CategoryID">
+                                 @item.Title.Remove(35)
+                                </a>
+                            </div>
+                            <div class="article-text">
+                                <p>
+                                    @item.Text.Remove(250)
+                                </p>
+                               
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                }
+            </div>
+            @await Component.InvokeAsync("TexnologyList")
+          @*   <partial name="~/Views/Partials/_Texnology.cshtml" /> *@
+        </div>
+       
+        @await Component.InvokeAsync("SideBarList")
+       @*  <partial name="~/Views/Partials/_SideBar.cshtml" /> *@
+        <div class="clearfix"></div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DTO.EntityDTO.PostDTO>
+@{
+    ViewData["Title"] = "Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sports-top">
+    <div class="s-grid-left">
+        <div class="cricket">
+            <header>
+                <h3 class="title-head"> @ViewBag.category</h3>
+            </header>
+            @foreach (var item in Model)
+            {
+                <div class="c-sports-main">
+                    <div class="c-image">
+                        <a href="single.html"><img src="@item.Image1" alt="" /></a>
+                    </div>
+                    <div class="c-text">
+                        <h6>@item.Title</h6>
+                        <a class="power" href="single.html">@item.Text.Remove(150)...</a>
+                        <p class="date">@item.Time.ToString("dd-MMMM-yyyy")</p>
+                        <a class="reu" href="single.html"><img src="images/more.png" alt="" /></a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+@await Component.InvokeAsync("CommentList")
